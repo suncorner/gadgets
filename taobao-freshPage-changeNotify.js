@@ -1,8 +1,5 @@
-//Javascript for Tampermonkey of Chrome.
-//Keep freshing the taobao page until the cargo put on the shelf and then notify the user to place the order.
-
 // ==UserScript==
-// @name         My Fancy New Userscript
+// @name         My Fancy New Userscript 2
 // @namespace    http://your.homepage/
 // @version      0.1
 // @description  enter something useful
@@ -19,11 +16,12 @@ function myrefresh()
 
 function getElements()
 {
-  var targetStr = "此宝贝已下架 ";
+  var pattern = "tb-out-of-date";
   var bRet = false;
     
-  var x=document.getElementsByTagName("p");
-    if(targetStr == x[1].innerText)
+  var x=document.getElementsByClassName(pattern);
+    //document.write(x.length);
+    if(x.length)
       	;//alert("Not the time yet...");
     else
         bRet = window.confirm("Time to buy now!");
@@ -36,5 +34,3 @@ var done = false;
 
 getElements();
 var timer1 = setInterval(myrefresh(),10000); //指定X秒刷新一次
-
-
